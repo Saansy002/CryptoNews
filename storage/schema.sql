@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS news_sentiment (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    sentiment REAL NOT NULL,
+    positive REAL NOT NULL,
+    neutral REAL NOT NULL,
+    negative REAL NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
