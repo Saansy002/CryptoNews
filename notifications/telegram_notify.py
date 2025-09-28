@@ -1,15 +1,12 @@
-# telegram_notify.py
-
 from telegram import Bot
 from config.settings import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
 
-# Initialize the bot
 bot = Bot(token=TELEGRAM_TOKEN)
 
 def send_message(item):
     """
-    Sends a single news item to the Telegram chat.
-    Expects item to be a dict with keys: text, source, link, timestamp
+    Sends a single news item to Telegram.
+    Expects item dict with keys: text, source, link, timestamp
     """
     text = item.get("text", "")
     source = item.get("source", "")

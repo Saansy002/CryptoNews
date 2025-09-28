@@ -27,3 +27,16 @@ TELEGRAM_PHONE = os.getenv("TELEGRAM_PHONE")
 # Discord Bot
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_CHANNEL_ID = os.getenv("DISCORD_CHANNEL_ID")
+# Telegram Configuration
+TELEGRAM_TOKEN = "8204594506:AAH9hKsnUKHqzJvXON2qPtxVIE4T_wR6d8"
+TELEGRAM_CHAT_ID = "silva_juniorbot"
+
+# Keywords for filtering
+KEYWORDS = ["Bitcoin", "Ethereum", "Crypto", "DeFi", "Altcoins"]
+
+# News sources (RSS feeds)
+NEWS_SOURCES = [
+    "https://cryptonews.com/news/rss/",
+    "https://cointelegraph.com/rss",
+    "https://coindesk.com/arc/outboundfeeds/rss/"
+]

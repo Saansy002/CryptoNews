@@ -1,47 +1,25 @@
-# telegram_ingest.py
-
 from telethon import TelegramClient
-from telethon.tl.functions.messages import GetHistoryRequest
-from config.settings import TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_PHONE
-from datetime import datetime
+from config import settings
 import asyncio
 
-# --- Channels to track ---
-CHANNELS = [
-    "Crypto_PumpSignals",
-    "BinanceAnnouncements",
-    "EthereumAnnouncements"
-]
+# Create client with persistent session
+client = TelegramClient(
+    'sessions/telegram_session',  # Session file path
+    settings.TELEGRAM_API_ID,
+    settings.TELEGRAM_API_HASH
+)
 
-# Initialize Telegram client
-client = TelegramClient('crypto_session', TELEGRAM_API_ID, TELEGRAM_API_HASH)
+async def fetch_messages(channel_id=settings.TELEGRAM_CHAT_ID, limit=50):
+    await client.start(phone=settings.TELEGRAM_PHONE)  # Only needed for first login
+    all_messages = []
 
-async def get_channel_messages(limit=20):
-    """
-    Fetch latest messages from predefined Telegram channels/groups.
-    Returns a list of dicts: {text, source, link, timestamp, author}
-    """
-    messages_data = []
-
-    await client.start(phone=TELEGRAM_PHONE)
-
-    for channel in CHANNELS:
-        try:
-            entity = await client.get_entity(channel)
-            history = await client.get_messages(entity, limit=limit)
-            for msg in history:
-                messages_data.append({
-                    "text": msg.message or "",
-                    "source": f"Telegram - {channel}",
-                    "link": f"https://t.me/{channel}/{msg.id}",
-                    "timestamp": msg.date.isoformat(),
-                    "author": msg.sender_id
-                })
-        except Exception as e:
-            print(f"Error fetching messages from {channel}: {e}")
+    async for message in client.iter_messages(channel_id, limit=limit):
+        all_messages.append(message.text)
 
     await client.disconnect()
-    return messages_data
+    return all_messages
 
-def fetch_messages(limit=20):
-    return asyncio.run(get_channel_messages(limit))
+# For testing
+if __name__ == "__main__":
+    messages = asyncio.run(fetch_messages())
+    print(f"Fetched {len(messages)} messages")
