@@ -1,5 +1,5 @@
 import requests
-from config.settings import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+from config.settings import TELEGRAM_TOKEN as TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
 def send_message(item):
     """

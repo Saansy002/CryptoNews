@@ -5,9 +5,8 @@ import os
 load_dotenv()
 
 # Telegram Bot
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-
+TELEGRAM_TOKEN = "8204594506:AAH9hKsnUTKHqzJvXON2qPtxVIE4T_wR6d8"
+TELEGRAM_CHAT_ID = "8204594506"
 # Twitter API
 TWITTER_API_KEY = os.getenv("TWITTER_API_KEY")
 TWITTER_API_SECRET = os.getenv("TWITTER_API_SECRET")
@@ -22,21 +21,9 @@ REDDIT_USER_AGENT = os.getenv("REDDIT_USER_AGENT")
 # Telegram API (Telethon)
 TELEGRAM_API_ID = os.getenv("TELEGRAM_API_ID")
 TELEGRAM_API_HASH = os.getenv("TELEGRAM_API_HASH")
-TELEGRAM_PHONE = os.getenv("TELEGRAM_PHONE")
+TELEGRAM_PHONE = +916383468674
 
 # Discord Bot
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_CHANNEL_ID = os.getenv("DISCORD_CHANNEL_ID")
-# Telegram Configuration
-TELEGRAM_TOKEN = "8204594506:AAH9hKsnUKHqzJvXON2qPtxVIE4T_wR6d8"
-TELEGRAM_CHAT_ID = "1829036467"
 
-# Keywords for filtering
-KEYWORDS = ["Bitcoin", "Ethereum", "Crypto", "DeFi", "Altcoins"]
-
-# News sources (RSS feeds)
-NEWS_SOURCES = [
-    "https://cryptonews.com/news/rss/",
-    "https://cointelegraph.com/rss",
-    "https://coindesk.com/arc/outboundfeeds/rss/"
-]
