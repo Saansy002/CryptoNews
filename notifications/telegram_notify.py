@@ -1,31 +1,22 @@
-from telegram import Bot
-from config.settings import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
-
-TELEGRAM_TOKEN = "8204594506:AAH9hKsnUKHqzJvXON2qPtxVIE4T_wR6d8"
-bot = Bot(token=TELEGRAM_TOKEN)
+import requests
+from config.settings import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
 def send_message(item):
     """
-    Sends a single news item to Telegram.
-    Expects item dict with keys: text, source, link, timestamp
+    Sends a formatted Telegram message with error logging.
     """
-    text = item.get("text", "")
-    source = item.get("source", "")
-    link = item.get("link", "")
-    timestamp = item.get("timestamp", "")
-
-    message = f"📰 *Crypto Update*\n\n"
-    message += f"*Source:* {source}\n"
-    message += f"*Time:* {timestamp}\n"
-    message += f"*Text:* {text}\n"
-    if link:
-        message += f"[Link]({link})"
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": TELEGRAM_CHAT_ID,
+        "text": f"🚨 {item['source']} Update:\n\n{item['text']}\n\n🔗 {item['link']}",
+        "disable_web_page_preview": True
+    }
 
     try:
-        bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message, parse_mode="Markdown")
-        print(f"Sent: {text[:50]}...")  # log first 50 chars
+        response = requests.post(url, json=payload)
+        if response.status_code == 200:
+            print(f"✅ Telegram message sent: {item['source']}")
+        else:
+            print(f"❌ Telegram error {response.status_code}: {response.text}")
     except Exception as e:
-        print(f"Error sending message: {e}")
-updates = bot.get_updates()
-for u in updates:
-    print(u.message.chat.id)
+        print(f"⚠️ Error sending Telegram message: {e}")
