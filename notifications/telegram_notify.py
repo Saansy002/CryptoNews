@@ -1,6 +1,7 @@
 from telegram import Bot
 from config.settings import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
 
+TELEGRAM_TOKEN = "8204594506:AAH9hKsnUKHqzJvXON2qPtxVIE4T_wR6d8"
 bot = Bot(token=TELEGRAM_TOKEN)
 
 def send_message(item):
@@ -25,3 +26,6 @@ def send_message(item):
         print(f"Sent: {text[:50]}...")  # log first 50 chars
     except Exception as e:
         print(f"Error sending message: {e}")
+updates = bot.get_updates()
+for u in updates:
+    print(u.message.chat.id)

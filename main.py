@@ -1,7 +1,7 @@
 import time
-from fetch_news import fetch_news
-from filter import filter_news
-from telegram_notify import send_message
+from ingestion.fetch_news import fetch_news
+from processing.filter import filter_news
+from notifications.telegram_notify import send_message
 
 # Interval in seconds (e.g., 15 minutes = 900 seconds)
 INTERVAL = 900  # 15 minutes

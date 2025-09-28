@@ -29,7 +29,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_CHANNEL_ID = os.getenv("DISCORD_CHANNEL_ID")
 # Telegram Configuration
 TELEGRAM_TOKEN = "8204594506:AAH9hKsnUKHqzJvXON2qPtxVIE4T_wR6d8"
-TELEGRAM_CHAT_ID = "silva_juniorbot"
+TELEGRAM_CHAT_ID = "1829036467"
 
 # Keywords for filtering
 KEYWORDS = ["Bitcoin", "Ethereum", "Crypto", "DeFi", "Altcoins"]
